@@ -1,0 +1,26 @@
+.login-button {
+    text-align: center;
+}
+
+.Login-Border {
+    border: 2px solid #00bcd4;
+    width: 80%;
+    margin: 100px auto;
+    background-color: rgba(255,255,255,.7);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+
+  /******************Responsive mobile********************/
+@media screen and (max-width: 768px) {
+    .container form {
+       font-size: 100%;
+    }
+  
+    .p {
+       font-size: 100%;
+       line-height: 160%;
+    }
+  }
+  /******************Responsive mobile********************/ 
