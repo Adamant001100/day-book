@@ -34,21 +34,22 @@ class Dashboard extends Component {
             
             <Router>
                 <nav >
-            <Link data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></Link>
+            <Link  data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></Link>
 
-    <div class="nav-wrapper">
-      <Link className="brand-logo">QazCarbon</Link>
+    <div  className="nav-wrapper">
+      <Link path="/" className="brand-logo">QazCarbon</Link>
       <ul id="slide-out" className="sidenav">
         <li className=""><Link to={'/create'} className="nav-link">Заполнить данные</Link></li>
-        <li><Link to={'/list'} className="nav-link">База данных</Link></li>
-        <li><a href="collapsible.html">Поиск</a></li>
+        <li><Link to={'/list'} className="nav-link">Лист</Link></li>
+        
       </ul>
     </div>
   </nav>                             
                    <Switch>
-                       <Route exact path='/create' component={ Create } />
-                       <Route exact path='/edit/:id' component={ Edit } />
-                       <Route exact path='/list' component={ List } />
+                       <Route exact path='/' component={Create} />
+                       <Route  path='/create' component={ Create } />
+                       <Route path='/edit/:id' component={ Edit } />
+                       <Route path='/list' component={ List } />
                    </Switch>
 
                     

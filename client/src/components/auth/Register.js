@@ -13,13 +13,10 @@ import './Register.css';
 class Register extends Component {
    constructor(props) {
         super(props);
-        
-        this.state = {
+            this.state = {
             name: "",
             email: "",
             password: "",
-
-    
             errors: {},
   };
 }
@@ -47,7 +44,6 @@ componentDidMount() {
         this.setState({ [e.target.id]: e.target.value });
     };
 
-
     onSubmit = e => {
         e.preventDefault();
 
@@ -63,15 +59,12 @@ componentDidMount() {
         //---------------------REDUX------------------------------//
 
 }; //--END CLASS
-   
-   
+      
     render() {
       const { errors } = this.state;
           return(
                <div className="container">
-                 <div className="Register-Border">
-          
-                   
+                 <div className="Register-Border">                 
                 <div className="col s8 offset-s2">
               <Link to="/" className="btn-flat waves-effect">
                     <i className="material-icons left">keyboard_backspace</i>Вернуться назад
@@ -94,12 +87,14 @@ componentDidMount() {
                     error={errors.name}
                     id="name"
                     type="text"
+               
                     //------------redux-------------//
                     className={classnames("", {
                       invalid: errors.name
                     })}
                   //------------redux-----------//
                 />
+           
                 <label htmlFor="name">Имя пользователя</label>
                   <span className="red-text">{errors.name}</span>
                </div>
@@ -155,30 +150,7 @@ componentDidMount() {
                 <label htmlFor="password2">Подтвердите пароль</label>
                   <span className="red-text">{errors.password2}</span>
                </div>                     
-                  
-                                                                                                
-               <label className="orange">
-                      <input className="with-gap" type="radio"
-                      onChange={this.onChangeCheckbox}
-                      id="checkbox"
-                      value="Passenger" checked={this.state.checkbox==='Passenger'}
-                      />
-                     <div className="layer"></div>
-                     <div className="button"><span></span></div>  
-                </label>
-                  
-
-                         
-                <label className="blue">
-                    <input className="with-gap" type="radio"
-                     onChange={this.onChangeCheckbox}
-                     id="checkbox"
-                     value="Driver" checked={this.state.checkbox==='Driver'}
-                     />
-                      <div className="layer"></div>
-                     <div className="button"><span></span></div> 
-                </label>
-                  
+                               
                 
               <div className="register-button">
               <button type="submit"

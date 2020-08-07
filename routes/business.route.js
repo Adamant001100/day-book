@@ -1,41 +1,55 @@
 // business.route.js
 const express = require('express');
 const businessRoutes = express.Router();
+const keys = require('../config/keys');
 
 // Require Business model in our routes module
 // Добавление моделя
 let Business = require('../models/business.model');
 
-//``````````````````````````````````````````````````````````````````````````````````````````````````````//
-
 //........................................................................//
 // Defined store route
-// Добавление данных
-businessRoutes.route('/add').post(function (req, res) {
-  let business = new Business(req.body);
-  business.save()
-    .then(business => {
-     // res.status(200).json({'business': 'business in added successfully'});
+// API/ADD/Business
+businessRoutes.post('/', (req, res) => {
+  const {
+    person_name,
+    last_name,
+    business_name,
+    business_gst_number,
+    storage,
+    os,
+    date } = req.body;
+
+    const newBusiness = new Business({
+      person_name: person_name,
+      last_name: last_name,
+      business_name: business_name,
+      business_gst_number,
+      storage: storage,
+      os: os,
+      date: date
     })
-    .catch(err => {
-      res.status(400).send("unable to save to database");
-    });
-});
+
+    newBusiness.save()
+       .then(() => res.json({
+         message: "Created successfully"
+       }))
+       .catch(err => res.status(400).json({
+         "error": err,
+         "message": "Error creating"
+       }))
+})
+
 //........................................................................//
 
 
 //........................................................................//
 // Defined get data(index or listing) route
 // получение данных
-businessRoutes.route('/').get(function (req, res) {
-    Business.find(function(err, businesses){
-    if(err){
-      console.log(err);
-    }
-    else {
-      res.json(businesses);
-    }
-  });
+businessRoutes.get('/', (req, res) => {
+  Business.find()
+            .then(business => res.json(business))
+            .catch(err => console.log(err))
 });
 //........................................................................//
 
@@ -62,12 +76,11 @@ businessRoutes.route('/update/:id').post(function (req, res) {
         business.last_name = req.body.last_name;
         business.business_name = req.body.business_name;
         business.business_gst_number = req.body.business_gst_number;
-       
         business.storage = req.body.storage;
         business.os = req.body.os;
 
         business.save().then(business => {
-       //   res.json('Update complete');
+        res.json('Update complete');
         })
     
         .catch(err => {

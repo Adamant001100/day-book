@@ -21,19 +21,6 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },   
-
-
-    //----------Radio data--------------------//
-      roles: [
-          {
-              choice: {
-                  type: String
-              },
-          }
-      ],
-    
-   //----------Radio data--------------------//
-
 });
 
 

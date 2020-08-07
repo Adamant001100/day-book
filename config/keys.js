@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: "mongodb://127.0.0.1:27017/indriver",
+    mongoURI: "mongodb+srv://dbUser:dbUser@qazcarbon-wrql3.mongodb.net/test",
     secretOrKey: "secret"
 };
