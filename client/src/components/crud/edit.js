@@ -84,8 +84,7 @@ export default class Edit extends Component {
       });
     }
     
-    
-    
+      
     onChangeDate(date) {
       this.setState({
         date: date
@@ -105,10 +104,11 @@ export default class Edit extends Component {
       date: this.state.date
     };
   
-    axios.post('/api/business/update/'+this.props.match.params.id, obj) 
+    axios.post('/api/business/update/' + this.props.match.params.id, obj) 
           .then(res => console.log(res.data)); 
     
     this.props.history.push('/index');
+    
   }
  
   render() {
@@ -181,12 +181,9 @@ export default class Edit extends Component {
                      <Datepicker
                       selected={this.state.date}
                       onChange={this.onChangeDate}
-
                      />
                    </div>
                 </div>
-
-              
 
                 <div className="form-group">
                     <input type="submit" 

@@ -34,7 +34,7 @@ export default class Index extends Component {
                 <i className="material-icons left">keyboard_backspace</i>Вернуться назад
               </Link>
         
-          <h3 align="center">Лист</h3>
+          <h3 align="center">Таблица записей</h3>
 
           <div className="list-table">
           <table data-toggle="table" style={{ marginTop: 20 }}>

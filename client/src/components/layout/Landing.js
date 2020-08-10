@@ -11,7 +11,7 @@ class Landing extends Component {
        <section className="intro">
         <div className="inner">
           <div className="content">
-            <h1>QazCarbon</h1>
+            <h1>BlueBox system</h1>
            
             <Link className="landing" to="/register">РЕГИСТРАЦИЯ</Link>
            
@@ -34,14 +34,8 @@ class Landing extends Component {
 </div>
 
               
-
-
-   
    );
 
-   
-
-   
   }
 
   

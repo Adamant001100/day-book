@@ -8,7 +8,7 @@ class TableRow extends Component {
         super(props);
         this.delete = this.delete.bind(this);
     }
-    delete() {
+    delete(_id) {
         axios.get('api/business/delete/'+this.props.obj._id)
             .then(console.log('Deleted'))
             .catch(err => console.log(err))
@@ -52,3 +52,6 @@ class TableRow extends Component {
 }
 
 export default TableRow;
+
+
+

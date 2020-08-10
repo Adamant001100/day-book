@@ -28,16 +28,12 @@ router.post("/register", (req, res ) => {
 
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+      return res.status(400).json({ email: "Такой E-mail уже существует" });
     } else {
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
-
-        //------------radio----------------//
-        checkbox: req.body.checkbox
-        //--------------radio--------------//
+        password: req.body.password,     
       });
 
   
@@ -59,13 +55,10 @@ router.post("/register", (req, res ) => {
 
 //-----------------------------------END--ROUTER REGISTER------------------------------------//
 
-
-
 //-------------------------------------ROUTER LOGIN------------------------------------//
-//http://localhost:5000/users/login
+                               //http://localhost:5000/users/login
 router.post("/login", (req, res) => {
-   
-    // Form validation
+       // Form validation
      const { errors, isValid } = validateLoginInput(req.body);
   
     // Check validation/Проверка валидации

@@ -12,16 +12,10 @@ import { logoutUser } from '../../actions/authActions';
 //---------------------------REDUX------------------------------//
 
 import './Dashboard.css';
-import M from  'materialize-css/dist/js/materialize.min.js';
 
 class Dashboard extends Component {
 
-    //=================Menu============================//
-    componentDidMount() {
-        let sidenav = document.querySelector('#slide-out');
-        M.Sidenav.init(sidenav, {});
-    }
-   //=================Menu============================//
+  
   
     onLogoutclick = e => {
         e.preventDefault();
@@ -33,23 +27,33 @@ class Dashboard extends Component {
         return(
             
             <Router>
-                <nav >
-            <Link  data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></Link>
+                <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+                
+                    <Link to=""  className="navbar-brand">BlueBox system</Link>
 
-    <div  className="nav-wrapper">
-      <Link path="/" className="brand-logo">QazCarbon</Link>
-      <ul id="slide-out" className="sidenav">
-        <li className=""><Link to={'/create'} className="nav-link">Заполнить данные</Link></li>
-        <li><Link to={'/list'} className="nav-link">Лист</Link></li>
-        
-      </ul>
-    </div>
-  </nav>                             
+                    <div className="collapse navbar-collapse">
+                        <ul className="navbar-nav mr-auto">
+                        
+                            <li className="navbar-item">
+                            <Link to="/create" className="navbar-link">Добавить данные</Link>
+                            </li>
+
+                            <li className="navbar-item">
+                            <Link to="/list" className="navbar-link">Просмотреть список</Link>
+                            </li>
+                        </ul>
+
+                        <button onClick={this.onLogoutclick}
+                                  className="btn btn-large waves-effect waves-light hoverable blue accent-3">
+                                    Выйти
+                            </button>
+                    </div>
+            </nav>                             
                    <Switch>
                        <Route exact path='/' component={Create} />
                        <Route  path='/create' component={ Create } />
                        <Route path='/edit/:id' component={ Edit } />
-                       <Route path='/list' component={ List } />
+                       <Route path='/list' component={List} />
                    </Switch>
 
                     
@@ -60,14 +64,9 @@ class Dashboard extends Component {
                                  <b>Здравствуйте,</b> {user.name.split(" ")[0]}
                                  <p className="flow-text grey-text text-darken-1">
                                 
-                                 <span style={{ fontFamily: "monospace" }}>QazCarbon</span>
+                                 <span style={{ fontFamily: "monospace" }}>BlueBox</span>
                                  </p>
-                             </h4>
-                             <button onClick={this.onLogoutclick}
-                                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                                  >
-                                    ВЫЙТИ ИЗ СИСТЕМЫ
-                             </button>
+                             </h4>                             
                          </div>
                      </div>
                  </div>

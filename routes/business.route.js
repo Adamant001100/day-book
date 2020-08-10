@@ -20,7 +20,7 @@ businessRoutes.post('/', (req, res) => {
     os,
     date } = req.body;
 
-    const newBusiness = new Business({
+      const newBusiness = new Business({
       person_name: person_name,
       last_name: last_name,
       business_name: business_name,
@@ -65,39 +65,39 @@ businessRoutes.route('/edit/:id').get(function (req, res) {
 //........................................................................//
 
 //........................................................................//
+
+
 //  update route
 // Маршрут обновления
-businessRoutes.route('/update/:id').post(function (req, res) {
-    Business.findById(req.params.id, function(err, business) {
-    if (!business)
-      res.status(404).send("data is not found");
-    else {
-        business.person_name = req.body.person_name;
-        business.last_name = req.body.last_name;
-        business.business_name = req.body.business_name;
-        business.business_gst_number = req.body.business_gst_number;
-        business.storage = req.body.storage;
-        business.os = req.body.os;
+businessRoutes.route('/update/:id').post((req, res) => {
+  Business.findById(req.params.id)
+  .then(business => {
+    business.person_name = req.body.person_name;
+    business.last_name = req.body.last_name;
+    business.business_name = req.body.business_name;
+    business.business_gst_number = req.body.business_gst_number;
+    business.storage = req.body.storage;
+    business.os = req.body.os;
+    business.date = Date.parse(req.body.date);
 
-        business.save().then(business => {
-        res.json('Update complete');
-        })
-    
-        .catch(err => {
-          res.status(400).send("unable to update the database");
-        });
-    }
-  });
+    business.save()
+    .then(() => res.json('Data updated!'))
+    .catch(err => res.status(400).json('Error:' + err));
+  })
+  .catch(err => res.status(400).json('Error:' + err));
 });
+   
 //..........................................................................//
+
 
 // Defined delete | remove | destroy route
 // Маршрут удаления
 businessRoutes.route('/delete/:id').get(function (req, res) {
-    Business.findByIdAndRemove({_id: req.params.id}, function(err, business){
-        if(err) res.json(err);
-        else res.json('Successfully removed');
-    });
+  Business.findByIdAndDelete({_id: req.params.id}, function(err, business){
+      if(err) res.json(err);
+      else res.json('Successfully removed');
+  });
 });
+
 
 module.exports = businessRoutes;
