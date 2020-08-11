@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 import './list.css';
 
-export default class Index extends Component {
+class Index extends Component {
 
   constructor(props) {
       super(props);
@@ -61,3 +61,5 @@ export default class Index extends Component {
       );
     }
   }
+
+  export default Index;

@@ -5,9 +5,12 @@ const passport = require("passport");
 const app = express();
 
 const users = require("./routes/users");
-const businessRoute = require('./routes/business.route');
+
+
+const employeeRoutes = require('./routes/Employee.route');
 
 const port = process.env.PORT || 5000 ;
+
 
 //bodyparser middleware
 app.use(require('morgan')('dev')); //Служит для логирования определенных запросов
@@ -29,7 +32,7 @@ mongoose.connect('mongodb+srv://dbAdamant:001100@cluster0-dmpcq.mongodb.net/test
 
 //API///
 app.use("/users", users);
-app.use("/api/business", businessRoute);
+app.use("/api/employees", employeeRoutes); //Есть изменение 11.08.20
 app.listen(port, () => console.log(`Server is running port ! ${port}`));
 
 

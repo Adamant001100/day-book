@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import Create from '../crud/create';
+import AddEmoloyee from '../crud/AddEmployee';
 import Edit from '../crud/edit';
 import List from '../crud/list';
 
@@ -15,8 +15,6 @@ import './Dashboard.css';
 
 class Dashboard extends Component {
 
-  
-  
     onLogoutclick = e => {
         e.preventDefault();
         this.props.logoutUser();
@@ -35,7 +33,7 @@ class Dashboard extends Component {
                         <ul className="navbar-nav mr-auto">
                         
                             <li className="navbar-item">
-                            <Link to="/create" className="navbar-link">Добавить данные</Link>
+                            <Link to="/addemployee" className="navbar-link">Добавить данные</Link>
                             </li>
 
                             <li className="navbar-item">
@@ -44,14 +42,14 @@ class Dashboard extends Component {
                         </ul>
 
                         <button onClick={this.onLogoutclick}
-                                  className="btn btn-large waves-effect waves-light hoverable blue accent-3">
+                                  className="btn btn-small waves-effect waves-light hoverable blue accent-3">
                                     Выйти
                             </button>
                     </div>
             </nav>                             
                    <Switch>
-                       <Route exact path='/' component={Create} />
-                       <Route  path='/create' component={ Create } />
+                       <Route exact path='/' component={AddEmoloyee} />
+                       <Route  path='/addemployee' component={ AddEmoloyee } />
                        <Route path='/edit/:id' component={ Edit } />
                        <Route path='/list' component={List} />
                    </Switch>
