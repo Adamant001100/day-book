@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import AddEmoloyee from '../crud/AddEmployee';
-import Edit from '../crud/edit';
-import List from '../crud/list';
+import Edit from '../crud/EditEmployee';
+import List from '../crud/ListEmployee';
 
 //---------------------------REDUX------------------------------//
 import PropTypes from 'prop-types';
