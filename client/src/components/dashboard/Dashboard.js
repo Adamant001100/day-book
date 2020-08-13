@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import AddEmoloyee from '../crud/AddEmployee';
-import Edit from '../crud/EditEmployee';
-import List from '../crud/ListEmployee';
+import AddEmployee from '../crud/AddEmployee';
+import EditEmployee from '../crud/EditEmployee';
+import ListEmployee from '../crud/ListEmployee';
 
 //---------------------------REDUX------------------------------//
 import PropTypes from 'prop-types';
@@ -48,10 +48,10 @@ class Dashboard extends Component {
                     </div>
             </nav>                             
                    <Switch>
-                       <Route exact path='/' component={AddEmoloyee} />
-                       <Route  path='/addemployee' component={ AddEmoloyee } />
-                       <Route path='/edit/:id' component={ Edit } />
-                       <Route path='/list' component={List} />
+                       <Route exact path='/' component={ ListEmployee } />
+                       <Route  path='/addemployee' component={ AddEmployee } />
+                       <Route path='/editEmployee/:id' component={ EditEmployee } />
+                       <Route path='/list' component={ ListEmployee } />
                    </Switch>
 
                     

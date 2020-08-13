@@ -80,6 +80,8 @@ handleChange = (event) => {
               </Link>
       <div style={{ marginTop: 10 }}>
             <h3 align="center">Заполните данные:</h3>
+       
+       
             <form onSubmit={this.handleSubmit}>
               
                 <div className="form-group">

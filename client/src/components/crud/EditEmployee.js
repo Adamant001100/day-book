@@ -1,197 +1,253 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Datepicker from 'react-datepicker';
+import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import './edit.css';
+
 //import { Datepicker } from 'materialize-css';
 
-export default class Edit extends Component {
+
+//=========================================================================
+class EditEmployee extends Component {
   constructor(props) {
     super(props);
-
-    this.onChangePersonName = this.onChangePersonName.bind(this);
-    this.onChangeLastName = this.onChangeLastName.bind(this);
-    this.onChangeBusinessName = this.onChangeBusinessName.bind(this);
-    this.onChangeBusinessGstNumber = this.onChangeBusinessGstNumber.bind(this);
-    this.onChangeStorage = this.onChangeStorage.bind(this);
-    this.onChangeOs = this.onChangeOs.bind(this);
-    this.onChangeDate = this.onChangeDate.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-        
-    this.state = {
-      person_name: '',
+      this.state = {
+      first_name: '',
       last_name: '',
-      business_name: '',
-      business_gst_number:'',
-      storage: '',
-      os: '',
-      date: new Date(),
+      age: '',
+      country:'',
+      adress: '',
+      identity_card: '',
+      id_card: '',
+      education: '',
+      speciality: '',
+      status: '',
+      date_of_birth: new Date()
     }
   }
-
-  componentDidMount() {
-      axios.get('/api/business/edit/'+this.props.match.params.id)
-          .then(response => {
-              this.setState({ 
-                person_name: response.data.person_name,
-                last_name: response.data.last_name, 
-                business_name: response.data.business_name,
-                business_gst_number: response.data.business_gst_number,
-                storage: response.data.storage,
-                os: response.data.os,
-                date: new Date(response.data.date) 
-              });
-        })
-          .catch(function (error) {
-              console.log(error);
-          })
-    }
-
-    onChangePersonName(e) {
-      this.setState({
-        person_name: e.target.value
-      });
-    }
-    
-    onChangeLastName(e) {
-      this.setState({
-        last_name: e.target.value
-      });
-    }
-    
-    onChangeBusinessName(e) {
-      this.setState({
-        business_name: e.target.value
-      });
-    }
-    
-    onChangeBusinessGstNumber(e) {
-      this.setState({
-        business_gst_number: e.target.value
-      });
-    }
-    
-    onChangeStorage(e) {
-      this.setState({
-        storage: e.target.value
-      });
-    }
-    
-    onChangeOs(e) {
-      this.setState({
-        os: e.target.value
-      });
-    }
-    
-      
-    onChangeDate(date) {
-      this.setState({
-        date: date
-      });
-    }
-    
-    
-  onSubmit(e) {
-    e.preventDefault();
-    const obj = {
-      person_name: this.state.person_name,
-      last_name: this.state.last_name,
-      business_name: this.state.business_name,
-      business_gst_number: this.business_gst_number,
-      storage: this.state.storage,
-      os: this.state.os,
-      date: this.state.date
-    };
   
-    axios.post('/api/business/update/' + this.props.match.params.id, obj) 
-          .then(res => console.log(res.data)); 
-    
-    this.props.history.push('/index');
-    
+componentDidMount = () => {
+    this.getEmployeeById();
   }
- 
+
+  // To get employee based on ID
+  getEmployeeById() {
+    axios.get('/api/employees/editEmployee/' + this.props.match.params.id )
+    .then((response) => {
+      this.setState({
+        first_name: response.data.first_name,
+        last_name: response.data.last_name,
+        age: response.data.age,
+        country: response.data.country,
+        adress: response.data.adress,
+        identity_card: response.data.identity_card,
+        id_card: response.data.id_card,
+        education: response.data.education,
+        speciality: response.data.speciality,
+        status: response.data.status,
+        date_of_birth: new Date(response.date_of_birth.date)
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+//=================================================================//
+  // To update the record on submit
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const {
+      first_name,
+      last_name,
+      age,
+      country,
+      adress,
+      identity_card,
+      id_card,
+      education,
+      speciality,
+      status,
+      date_of_birth
+    } = this.state;
+  
+    axios.post('/api/employees/updateEmployee/' + this.props.match.params.id, {
+      first_name: first_name,
+      last_name:  last_name,
+      age: age,
+      country: country,
+      adress: adress,
+      identity_card: identity_card,
+      id_card: id_card,
+      education: education,
+      speciality: speciality,
+      status: status,
+      date_of_birth: date_of_birth
+    }) 
+
+    .then((response) => {
+      console.log(response);
+      this.props.history.push('/');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  }
+//=======================================================================
+      
   render() {
     return (
         <div className="edit">
            
             <h3 align="center">Изменить данные</h3>
 
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                    <label>Имя сотрудника:  </label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      value={this.state.person_name}
-                      onChange={this.onChangePersonName}
-                      />
-                </div>
+            <form onSubmit={this.handleSubmit}>
+              
+              <div className="form-group">
+                  <label>Имя сотрудника:  </label>
+                  <input 
+                    type="text" 
+                    className="form-control" 
+                    name="first_name"
+                    value={this.state.first_name}
+                    onChange={this.handleChange}
+                    />
+              </div>
 
-                <div className="form-group">
-                    <label>Фамилия сотрудника:  </label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      value={this.state.last_name}
-                      onChange={this.onChangeLastName}
-                      />
-                </div>
+              <div className="form-group">
+                  <label>Фамилия сотрудника:  </label>
+                  <input 
+                    type="text" 
+                    className="form-control"
+                    name="last_name" 
+                    value={this.state.last_name}
+                    onChange={this.handleChange}
+                    />
+              </div>
 
-                <div className="form-group">
-                    <label>Наименование товара: </label>
-                    <input type="text" 
-                      className="form-control"
-                      value={this.state.business_name}
-                      onChange={this.onChangeBusinessName}
-                      />
-                </div>
-                <div className="form-group">
-                    <label>Серийный номер: </label>
-                    <input type="text" 
-                      className="form-control"
-                      value={this.state.business_gst_number}
-                      onChange={this.onChangeBusinessGstNumber}
-                      />
-                </div>
+              <div className="form-group">
+                  <label>Возраст: </label>
+                  <input type="text" 
+                    className="form-control"
+                   name="age"
+                    value={this.state.age}
+                    onChange={this.handleChange}
+                    />
+              </div>
+    
+              <div className="form-group">
+                  <label>Страна: </label>
+                  <input type="text" 
+                    className="form-control"
+                    name="country"
+                    value={this.state.country}
+                    onChange={this.handleChange}
+                    />
+              </div>
 
-                <div className="form-group">
-                    <label>СКЛАД: </label>
-                    <input type="text" 
-                      className="form-control"
-                      value={this.state.storage}
-                      onChange={this.onChangeStorage}
-                      />
-                </div>
-
-
-                <div className="form-group">
-                    <label>ОС: </label>
-                    <input type="text" 
-                      className="form-control"
-                      value={this.state.os}
-                      onChange={this.onChangeOs}
-                      />
-                </div>
+              <div className="form-group">
+                  <label>Адрес проживание: </label>
+                  <input type="text" 
+                    className="form-control"
+                    name="adress"
+                    value={this.state.adress}
+                    onChange={this.handleChange}
+                    />
+              </div>
 
 
-                <div className="form-group">
-                    <label>ДАТА: </label>
-                   <div>
-                     <Datepicker
-                      selected={this.state.date}
-                      onChange={this.onChangeDate}
-                     />
-                   </div>
-                </div>
+              <div className="form-group">
+                  <label>Номер удостоверение: </label>
+                  <input 
+                    type="text" 
+                    className="form-control"
+                    name="identity_card"
+                    value={this.state.identity_card}
+                    onChange={this.handleChange}
+                    />
+              </div>
 
-                <div className="form-group">
-                    <input type="submit" 
-                      value="Обновить данные" 
-                      className="btn btn-primary"/>
-                </div>                      
-           </form>
+              <div className="form-group">
+                  <label>Ваш ИИН:</label>
+                  <input 
+                    type="text" 
+                    className="form-control"
+                    name="id_card"
+                    value={this.state.id_card}
+                    onChange={this.handleChange}
+                    />
+              </div>
+
+              <div className="form-group">
+                  <label>Образование:</label>
+                  <input 
+                    type="text" 
+                    className="form-control"
+                    name="education"
+                    value={this.state.education}
+                    onChange={this.handleChange}
+                    />
+              </div>
+
+              <div className="form-group">
+                  <label>Специальность:</label>
+                  <input 
+                    type="text" 
+                    className="form-control"
+                    name="speciality"
+                    value={this.state.speciality}
+                    onChange={this.handleChange}
+                    />
+              </div>
+
+              <div className="form-group">
+                  <label>Статус сотрудника:</label>
+                  <input 
+                    type="text" 
+                    className="form-control"
+                    name="status"
+                    value={this.state.status}
+                    onChange={this.handleChange}
+                    />
+              </div>
+
+
+              <div className="form-group">
+                <label>Дата рождение:</label>
+                 <div>
+                   <DatePicker
+                
+                  
+                   selected={this.state.date}
+                   onChange={this.onChangeDate}
+                   
+                   />
+                  <br />
+                  <hr />
+                  <br />
+
+
+                  <div className="Create-Button">
+                 <div className="form-group">
+                  <input type="submit" 
+                    value="Обновить данные" 
+                    className="btn btn-large" />
+                    </div> 
+          
+              </div>
+                 </div>
+              </div>
+
+          </form>
         </div>
     )
   }
 }
+
+export default EditEmployee;
