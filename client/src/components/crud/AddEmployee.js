@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
+import { DatePicker } from '@y0c/react-datepicker';
 import { Link } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
 
-import './create.css';
+import "dayjs/locale/ru";
+
+import "./red.scss";
+import './AddEmployee.css';
 
 class AddEmployee extends Component {
   constructor(props) {
@@ -78,23 +81,30 @@ handleChange = (event) => {
                <Link to="/" className="btn-flat waves-effect">
                 <i className="material-icons left">keyboard_backspace</i>Вернуться назад
               </Link>
-      <div style={{ marginTop: 10 }}>
+      <div style={{ marginTop: 40 }}>
             <h3 align="center">Заполните данные:</h3>
        
-       
+             <div className="container">
             <form onSubmit={this.handleSubmit}>
+
               
-                <div className="form-group">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
                     <label>Имя сотрудника:  </label>
                     <input 
                       type="text" 
-                      className="form-control" 
+                      className="form-control"
+                      id="validationDefault01" 
                       name="first_name"
                       value={this.state.first_name}
                       onChange={this.handleChange}
+                      required
                       />
-                </div>
-
+                      </div>
+                      </div>
+                 
+                <div className="col-md-6">
                 <div className="form-group">
                     <label>Фамилия сотрудника:  </label>
                     <input 
@@ -104,8 +114,13 @@ handleChange = (event) => {
                       value={this.state.last_name}
                       onChange={this.handleChange}
                       />
+                      </div>
+                </div>
+                
                 </div>
 
+                <div className="row">
+                <div className="col-md-6">
                 <div className="form-group">
                     <label>Возраст: </label>
                     <input type="text" 
@@ -114,18 +129,31 @@ handleChange = (event) => {
                       value={this.state.age}
                       onChange={this.handleChange}
                       />
+                      </div>
                 </div>
+                
       
+                
+                <div className="col-md-6">
                 <div className="form-group">
                     <label>Страна: </label>
-                    <input type="text" 
-                      className="form-control"
-                      name="country"
-                      value={this.state.country}
-                      onChange={this.handleChange}
-                      />
+                    <select className="custom-select d-block w-100" id="country" required
+                       name="country"
+                       value={this.state.country}
+                       onChange={this.handleChange}
+                    >
+              <option value="">Казахстан</option>
+              <option>США</option>
+              <option>Россия</option>
+              <option>Мексика</option>
+            </select>
+                  
                 </div>
-
+                </div>
+                </div>
+               
+                <div className="row">
+                <div className="col-md-6">
                 <div className="form-group">
                     <label>Адрес проживание: </label>
                     <input type="text" 
@@ -135,8 +163,9 @@ handleChange = (event) => {
                       onChange={this.handleChange}
                       />
                 </div>
+               </div>
 
-
+               <div className="col-md-6"> 
                 <div className="form-group">
                     <label>Номер удостоверение: </label>
                     <input 
@@ -147,7 +176,12 @@ handleChange = (event) => {
                       onChange={this.handleChange}
                       />
                 </div>
-
+                </div>
+                
+                </div> 
+                
+                <div className="row">
+                <div className="col-md-6">
                 <div className="form-group">
                     <label>Ваш ИИН:</label>
                     <input 
@@ -158,7 +192,9 @@ handleChange = (event) => {
                       onChange={this.handleChange}
                       />
                 </div>
+                </div>
 
+                <div className="col-md-6">
                 <div className="form-group">
                     <label>Образование:</label>
                     <input 
@@ -169,7 +205,12 @@ handleChange = (event) => {
                       onChange={this.handleChange}
                       />
                 </div>
+                </div>
 
+                </div>
+
+                <div className="row">
+                <div className="col-md-6">
                 <div className="form-group">
                     <label>Специальность:</label>
                     <input 
@@ -180,7 +221,9 @@ handleChange = (event) => {
                       onChange={this.handleChange}
                       />
                 </div>
+                </div>
 
+               <div className="col-md-6">
                 <div className="form-group">
                     <label>Статус сотрудника:</label>
                     <input 
@@ -191,23 +234,24 @@ handleChange = (event) => {
                       onChange={this.handleChange}
                       />
                 </div>
+                </div>
 
- 
+                </div>
+
+                <div className="row">
+                <div className="col-md-6">
                 <div className="form-group">
                   <label>Дата рождение:</label>
+               
                    <div>
-                     <DatePicker
-                  
-                    
-                     selected={this.state.date}
-                     onChange={this.onChangeDate}
-                     
-                     />
+                   <DatePicker locale="ru" onChange={this.onChange}/>
                     <br />
                     <hr />
                     <br />
-
-
+                  </div>
+                  </div>
+               </div>
+               
                     <div className="Create-Button">
                    <div className="form-group">
                     <input type="submit" 
@@ -217,11 +261,12 @@ handleChange = (event) => {
             
                 </div>
                    </div>
-                </div>
+                
 
             </form>
         </div>
         </div>
+        </div> //End container form
     )
   }
 }

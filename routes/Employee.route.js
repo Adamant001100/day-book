@@ -71,7 +71,7 @@ employeeRoute.route('/updateEmployee/:id').post(function (req, res) {
       employee.status = req.body.status;
       employee.date_of_birth = Date.parse(req.body.date);
 
-      employee.save().then(emp => {
+      employee.save().then(employee => {
         res.json('Employee Updated Successfully');
       })
       .catch(err => {

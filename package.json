@@ -13,9 +13,11 @@
   "author": "Almaz Nurzhanov (Adamant001100)",
   "license": "ISC",
   "dependencies": {
+    "@y0c/react-datepicker": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.2",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -24,8 +26,10 @@
     "mongoose": "^5.9.9",
     "monitor": "^0.6.10",
     "morgan": "^1.10.0",
+    "node-sass": "^4.14.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "react-bootstrap": "^1.3.0",
     "validator": "^13.0.0"
   },
   "devDependencies": {
