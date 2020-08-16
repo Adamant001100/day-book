@@ -1,76 +1,78 @@
-import React, { Component,  } from 'react';
-import {Link, withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 
 //-----------------------Redux------------------------------//
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { registerUser } from '../../actions/authActions';
-import classnames from 'classnames'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import classnames from "classnames";
 //-----------------------Redux------------------------------//
 
-import './Register.css';
+import "./Register.css";
 
 class Register extends Component {
-   constructor(props) {
-        super(props);
-            this.state = {
-            name: "",
-            email: "",
-            password: "",
-            errors: {},
-  };
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      errors: {},
+    };
+  }
 
-componentDidMount() {
-      // If logged in and user navigates to Register page, should redirect them to dashboard
-      //Если вы вошли в систему и пользователь перешел на страницу регистрации, следует перенаправить их на панель инструментов.
-      
-      if (this.props.auth.isAuthenticated) {
-        this.props.history.push("/dashboard");
-      }
-}
-    
-    //---------------------------REDUX-----------------------------------//
-    componentWillReceiveProps(nextProps) {
-      if(nextProps.errors) {
-        this.setState({
-          errors: nextProps.errors
-        });
-      }
+  componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    //Если вы вошли в систему и пользователь перешел на страницу регистрации, следует перенаправить их на панель инструментов.
+
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
     }
-   //---------------------------REDUX-----------------------------------//
+  }
 
-    onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
+  //---------------------------REDUX-----------------------------------//
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors,
+      });
+    }
+  }
+  //---------------------------REDUX-----------------------------------//
+
+  onChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2,
     };
 
-    onSubmit = e => {
-        e.preventDefault();
+    //---------------------REDUX------------------------------//
+    this.props.registerUser(newUser, this.props.history);
+    //---------------------REDUX------------------------------//
+  }; //--END CLASS
 
-        const newUser = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-            password2: this.state.password2,
-        };
-
-        //---------------------REDUX------------------------------//
-           this.props.registerUser(newUser, this.props.history);
-        //---------------------REDUX------------------------------//
-
-}; //--END CLASS
-      
-    render() {
-      const { errors } = this.state;
-          return(
-               <div className="container">
-                 <div className="Register-Border">                 
-                <div className="col s8 offset-s2">
-              <Link to="/" className="btn-flat waves-effect">
-                    <i className="material-icons left">keyboard_backspace</i>Вернуться назад
-              </Link>
-
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+  render() {
+    const { errors } = this.state;
+    return (
+      <div className="container">
+        <div className="row justify-content-center">
+        <div class="col-md-5">
+        <div class="card">
+        <div class="card-body py-md-4">
+          <div className="col s8 offset-s2">
+            <Link to="/" className="btn-flat waves-effect">
+            <span className="glyphicon glyphicon-arrow-left"></span>  <i className="glyphicon glyphicon-arrow-left"></i>Вернуться
+              назад
+            </Link>
+            <div>
               <h4>
                 <b>Регистрация</b> ниже
               </h4>
@@ -79,94 +81,110 @@ componentDidMount() {
               </p>
             </div>
 
-            <form noValidate onSubmit={this.onSubmit}>
-                <div className="input-field col s12">
-                    <input
-                    onChange={this.onChange}
-                    value={this.state.name}
-                    error={errors.name}
-                    id="name"
-                    type="text"
+    
+    
+            <form _lpchecked="1" className="signup" noValidate onSubmit={this.onSubmit}>
+              <div className="form-group">
                
-                    //------------redux-------------//
-                    className={classnames("", {
-                      invalid: errors.name
-                    })}
+                <input
+                  onChange={this.onChange}
+                  value={this.state.name}
+                  error={errors.name}
+                  id="name"
+                  type="text"
+                  className="form-control"
+                  placeholder="Имя пользователя"
+                  
+
+                  //------------redux-------------//
+                  className={classnames("", {
+                    invalid: errors.name,
+                  })}
                   //------------redux-----------//
                 />
-           
-                <label htmlFor="name">Имя пользователя</label>
-                  <span className="red-text">{errors.name}</span>
-               </div>
 
-               <div className="input-field col s12">
-                    <input
-                    onChange={this.onChange}
-                    value={this.state.email}
-                    error={errors.email}
-                    id="email"
-                    type="email"
-                //------------redux-------------//
-                    className={classnames("", {
-                      invalid: errors.email
-                    })}
-                //------------redux-------------//
-                />
-                <label htmlFor="email">Email</label>
-                  <span className="red-text">{errors.email}</span>
-               </div>
+               
+                <span className="red-text">{errors.name}</span>
+              </div>
 
-               <div className="input-field col s12">
-                    <input
-                    onChange={this.onChange}
-                    value={this.state.password}
-                    error={errors.password}
-                    id="password"
-                    type="password"
-                    //------------redux-------------//
-                    className={classnames("", {
-                      invalid: errors.password
-                    })}
-                    //------------redux-------------//
+            
+            
+              <div className="form-group">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  id="email"
+                  type="text"
+                  placeholder="Email"
+                  className="form-control"
+                  //------------redux-------------//
+                  className={classnames("", {
+                    invalid: errors.email,
+                  })}
+                  //------------redux-------------//
                 />
-                <label htmlFor="password">Придумайте пароль</label>
-                  <span className="red-text">{errors.password}</span>
-               </div>
-
-               <div className="input-field col s12">
-                    <input
-                    onChange={this.onChange}
-                    value={this.state.password2}
-                    error={errors.password2}
-                    id="password2"
-                    type="password"
-                    //------------redux-------------//
-                    className={classnames("", {
-                      invalid: errors.password2
-                    })}
-                    //------------redux-------------//
-                />
-                              
-                <label htmlFor="password2">Подтвердите пароль</label>
-                  <span className="red-text">{errors.password2}</span>
-               </div>                     
-                               
                 
+                <span className="red-text">{errors.email}</span>
+              </div>
+
+              <div className="form-group">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.password}
+                  error={errors.password}
+                  id="password"
+                  type="password"
+                  placeholder="Придумайте пароль"
+                  className="form-control"
+                  //------------redux-------------//
+                  className={classnames("", {
+                    invalid: errors.password,
+                  })}
+                  //------------redux-------------//
+                />
+                
+                <span className="red-text">{errors.password}</span>
+              </div>
+
+              <div className="form-group">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.password2}
+                  error={errors.password2}
+                  id="password2"
+                  type="password"
+                  placeholder="Подтвердите пароль"
+                  className="form-control"
+                  //------------redux-------------//
+                  className={classnames("", {
+                    invalid: errors.password2,
+                  })}
+                  //------------redux-------------//
+                />
+
+                
+                <span className="red-text">{errors.password2}</span>
+              </div>
+
               <div className="register-button">
-              <button type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3">
+             
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                >
                   Зарегистрироваться
-                  
-             </button>
-              </div>            
-  
-                </form>
-             </div>       
+                </button>
+              </div>
+            </form>
+            </div>
           </div>
           </div>
-      
-      );
-   }
+          </div>
+          </div> 
+      </div>
+    );
+  }
 }
 
 //----------------------------REDUX-----------------------------------//
@@ -174,17 +192,14 @@ componentDidMount() {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
-export default connect(
-  mapStateToProps,
-  { registerUser }
-)(withRouter(Register));
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
 
 //----------------------------REDUX-----------------------------------//
