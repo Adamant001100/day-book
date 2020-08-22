@@ -66,15 +66,14 @@ render() {
     
       return (
         <div className="container">
-          <div className="Login-Border">
-       
-        
-          <div style={{ marginTop: "6rem" }} className="row">
-            <div className="col s8 offset-s2">
+          <div className="row justify-content-center">
+          <div className="col-md-5">
+            <div className="card">
+            <div className="card-body py-md-4">
               <Link to="/" className="btn-flat waves-effect">
-                <i className="material-icons left">keyboard_backspace</i>Вернуться назад
+              <span className="glyphicon glyphicon-arrow-left"></span>  <i className="glyphicon glyphicon-arrow-left"></i>Вернуться назад
               </Link>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <div className="col s8 offset-s2">
                 <h4>
                   <b>Войти</b> ниже
                 </h4>
@@ -82,7 +81,15 @@ render() {
                   У Вас нет аккаунта? <Link to="/register">Регистрация</Link>
                 </p>
               </div>
-              <form noValidate onSubmit={this.onSubmit}>
+           
+           
+           
+           
+              <form _lpchecked="1" className="signin" noValidate onSubmit={this.onSubmit}>
+           
+           <div className="form-group">
+           
+           
                 <div className="input-field col m12 s12">
                   <input
                     onChange={this.onChange}
@@ -90,16 +97,18 @@ render() {
                     error={errors.email}
                     id="email"
                     type="email"
+                    className="form-control"
+                    placeholder="E-mail"
                     //---------------------REDUX-------------------------------//
-                    className={classnames("", {
+                    classNames={classnames("", {
                       invalid: errors.email || errors.emailnotfound
                     })}
                     //---------------------REDUX-------------------------------//
                   />
               
               
-                  <label htmlFor="email">Email</label>
-                  <span className="red-text">
+                  
+                  <span className="text-danger">
                     {errors.email}
                     {errors.emailnotfound}
                   </span>
@@ -111,36 +120,39 @@ render() {
                     error={errors.password}
                     id="password"
                     type="password"
+                    className="form-control"
+                    placeholder="Введите пароль"
+                    
                     //---------------------REDUX-------------------------------//
-                    className={classnames("", {
+                    classNames={classnames("", {
                       invalid: errors.password || errors.passwordincorrect
                     })}
                     //---------------------REDUX-------------------------------//
 
                   />
                     
-                  <label htmlFor="password">Пароль</label>
-                  <span className="red-text">
+                  
+                  <span className="text-danger">
                          {errors.password}
                          {errors.passwordincorrect}
                   </span>
                 </div>
        
-                 <div className="row">
-                <div className="login-button">
+               
+                <div className="d-flex flex-row align-items-center justify-content-center">
                   <button type="submit"
-                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                    className="btn btn-primary"
                   >
                     ВОЙТИ В СИСТЕМУ
                   </button>
                 </div>
-                </div>
-               
+              
+               </div>
               </form>
             </div>
           </div>
-        
-   
+       
+         </div>
           </div>
         </div>
 

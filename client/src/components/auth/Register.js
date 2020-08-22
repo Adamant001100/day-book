@@ -64,9 +64,9 @@ class Register extends Component {
     return (
       <div className="container">
         <div className="row justify-content-center">
-        <div class="col-md-5">
-        <div class="card">
-        <div class="card-body py-md-4">
+        <div className="col-md-5">
+        <div className="card">
+        <div className="card-body py-md-4">
           <div className="col s8 offset-s2">
             <Link to="/" className="btn-flat waves-effect">
             <span className="glyphicon glyphicon-arrow-left"></span>  <i className="glyphicon glyphicon-arrow-left"></i>Вернуться
@@ -84,6 +84,8 @@ class Register extends Component {
     
     
             <form _lpchecked="1" className="signup" noValidate onSubmit={this.onSubmit}>
+          
+          
               <div className="form-group">
                
                 <input
@@ -97,14 +99,14 @@ class Register extends Component {
                   
 
                   //------------redux-------------//
-                  className={classnames("", {
+                  classNames={classnames("", {
                     invalid: errors.name,
                   })}
                   //------------redux-----------//
                 />
 
                
-                <span className="red-text">{errors.name}</span>
+                <span className="text-danger">{errors.name}</span>
               </div>
 
             
@@ -119,13 +121,13 @@ class Register extends Component {
                   placeholder="Email"
                   className="form-control"
                   //------------redux-------------//
-                  className={classnames("", {
+                  classNames={classnames("", {
                     invalid: errors.email,
                   })}
                   //------------redux-------------//
                 />
                 
-                <span className="red-text">{errors.email}</span>
+                <span className="text-danger">{errors.email}</span>
               </div>
 
               <div className="form-group">
@@ -138,13 +140,13 @@ class Register extends Component {
                   placeholder="Придумайте пароль"
                   className="form-control"
                   //------------redux-------------//
-                  className={classnames("", {
+                  classNames={classnames("", {
                     invalid: errors.password,
                   })}
                   //------------redux-------------//
                 />
                 
-                <span className="red-text">{errors.password}</span>
+                <span className="text-danger">{errors.password}</span>
               </div>
 
               <div className="form-group">
@@ -157,21 +159,21 @@ class Register extends Component {
                   placeholder="Подтвердите пароль"
                   className="form-control"
                   //------------redux-------------//
-                  className={classnames("", {
+                  classNames={classnames("", {
                     invalid: errors.password2,
                   })}
                   //------------redux-------------//
                 />
 
                 
-                <span className="red-text">{errors.password2}</span>
+                <span className="text-danger">{errors.password2}</span>
               </div>
 
-              <div className="register-button">
-             
+              <div className="d-flex flex-row align-items-center justify-content-center">
                 <button
                   type="submit"
                   className="btn btn-primary"
+                  mb-2
                 >
                   Зарегистрироваться
                 </button>
