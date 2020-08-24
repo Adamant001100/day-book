@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 
 function checkTime(i) {
   if (i < 10) {

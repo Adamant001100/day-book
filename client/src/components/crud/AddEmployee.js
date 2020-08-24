@@ -140,8 +140,7 @@ class AddEmployee extends Component {
                       name="country"
                       value={this.state.country}
                       onChange={this.handleChange}
-                   />
-                    
+                    />
                   </div>
                 </div>
               </div>
@@ -229,7 +228,6 @@ class AddEmployee extends Component {
                   </div>
                 </div>
               </div>
-
 
               <div className="row">
                 <div className="col-md-6">

@@ -1,9 +1,7 @@
- * {
+* {
   margin: 0;
   padding: 0;
 }
-
-
 
 .intro {
   height: 100vh;
@@ -16,7 +14,7 @@
   background-size: cover;
   background-position: center;
   position: absolute;
-  line-height: 10vh;  
+  line-height: 10vh;
 }
 
 .intro .inner {
@@ -35,17 +33,17 @@
 .content h1 {
   font-family: -apple-system, BlinkMacSystemFont, "Oswald", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #3700B3;
+  color: #3700b3;
   font-size: 600%;
-  }
+}
 
 .landing {
   border-radius: 5px;
   font-family: "Oswald", sans-serif;
-  color: #3700B3;
+  color: #3700b3;
   font-size: 150%;
   padding: 20px 35px 20px;
-  border: solid #3700B3 2px;
+  border: solid #3700b3 2px;
   text-transform: uppercase;
   text-decoration: none;
   margin: 0 5px auto;
@@ -55,25 +53,22 @@
   color: #fff;
   border: solid #fff 3px;
   text-decoration-line: none;
-
 }
 
 /******************Responsive mobile********************/
 @media screen and (max-width: 736px) {
-   .content h1 {
-     font-size: 250%;
-   }
-   .landing {
-     font-size: 100%;
-     padding: 10px 10px;
-   }
-   p {
-     font-size: 100%;
-     line-height: 160%;
-   }
- }
-
-
+  .content h1 {
+    font-size: 250%;
+  }
+  .landing {
+    font-size: 100%;
+    padding: 10px 10px;
+  }
+  p {
+    font-size: 100%;
+    line-height: 160%;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .content h1 {
@@ -90,47 +85,44 @@
 }
 
 @media screen and (max-width: 812px) {
-   .content h1 {
-     font-size: 250%;
-   }
-   .landing {
-     font-size: 100%;
-     padding: 10px 10px;
-   }
-   p {
-     font-size: 100%;
-     line-height: 160%;
-   }
- }
+  .content h1 {
+    font-size: 250%;
+  }
+  .landing {
+    font-size: 100%;
+    padding: 10px 10px;
+  }
+  p {
+    font-size: 100%;
+    line-height: 160%;
+  }
+}
 
 @media screen and (max-width: 1024px) {
-   .content h1 {
-     font-size: 250%;
-   }
-   .landing {
-     font-size: 100%;
-     padding: 10px 10px;
-   }
-   p {
-     font-size: 100%;
-     line-height: 160%;
-   }
- }
+  .content h1 {
+    font-size: 250%;
+  }
+  .landing {
+    font-size: 100%;
+    padding: 10px 10px;
+  }
+  p {
+    font-size: 100%;
+    line-height: 160%;
+  }
+}
 
- @media screen and (max-width: 1112px) {
-   .content h1 {
-     font-size: 250%;
-   }
-   .landing {
-     font-size: 100%;
-     padding: 10px 10px;
-   }
-   p {
-     font-size: 100%;
-     line-height: 160%;
-   }
- }
+@media screen and (max-width: 1112px) {
+  .content h1 {
+    font-size: 250%;
+  }
+  .landing {
+    font-size: 100%;
+    padding: 10px 10px;
+  }
+  p {
+    font-size: 100%;
+    line-height: 160%;
+  }
+}
 /******************Responsive mobile********************/
-
-
-

@@ -41,9 +41,6 @@ class ListEmployee extends Component {
     const { employees } = this.state;
     return (
       <div>
-      
-      
-
         <h3 align="center">Таблица записей</h3>
 
         <table className="table table-bordered">

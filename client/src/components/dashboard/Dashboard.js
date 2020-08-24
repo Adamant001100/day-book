@@ -63,9 +63,6 @@ class Dashboard extends Component {
                   Выдать пропуск
                 </Link>
               </li>
-
-
-
             </ul>
           </div>
 

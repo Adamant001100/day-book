@@ -1,15 +1,12 @@
-
-
- 
 /******************Responsive mobile********************/
 @media screen and (max-width: 768px) {
   .Create-Border form .Create-Button {
-     font-size: 100%;
+    font-size: 100%;
   }
 
   .Create-Border .Create-Button {
-     font-size: 100%;
-     line-height: 160%;
+    font-size: 100%;
+    line-height: 160%;
   }
 }
-/******************Responsive mobile********************/ 
+/******************Responsive mobile********************/
