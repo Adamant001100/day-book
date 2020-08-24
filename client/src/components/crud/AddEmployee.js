@@ -133,19 +133,15 @@ class AddEmployee extends Component {
                 <div className="col-md-6">
                   <div className="form-group">
                     <label>Страна: </label>
-                    <select
-                      className="custom-select d-block w-100"
+                    <input
+                      className="form-control"
                       id="country"
                       required
                       name="country"
                       value={this.state.country}
                       onChange={this.handleChange}
-                    >
-                      <option selected="selected">Выберите</option>
-                      <option>Казахстан</option>
-                      <option>США</option>
-                      <option>Россия</option>
-                    </select>
+                   />
+                    
                   </div>
                 </div>
               </div>
@@ -233,6 +229,7 @@ class AddEmployee extends Component {
                   </div>
                 </div>
               </div>
+
 
               <div className="row">
                 <div className="col-md-6">

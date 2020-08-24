@@ -41,10 +41,8 @@ class ListEmployee extends Component {
     const { employees } = this.state;
     return (
       <div>
-        <Link to="/" className="btn-flat waves-effect">
-          <i className="material-icons left">keyboard_backspace</i>Вернуться
-          назад
-        </Link>
+      
+      
 
         <h3 align="center">Таблица записей</h3>
 
@@ -105,7 +103,6 @@ class ListEmployee extends Component {
                   </tr>
                 );
               })}
-            
           </tbody>
         </table>
       </div>

@@ -13,6 +13,7 @@
   "author": "Almaz Nurzhanov (Adamant001100)",
   "license": "ISC",
   "dependencies": {
+    "@n1ru4l/react-time-ago": "^1.1.0",
     "@y0c/react-datepicker": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",

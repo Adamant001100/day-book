@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import Clock from "./clock";
+
 import AddEmployee from "../crud/AddEmployee";
 import EditEmployee from "../crud/EditEmployee";
 import ListEmployee from "../crud/ListEmployee";
@@ -24,37 +26,56 @@ class Dashboard extends Component {
     return (
       <Router>
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-        <Link to="/" className="navbar-brand">BlueBox</Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarCollapse">
-    <ul className="navbar-nav">
-      <li className="nav-item active">
-        <Link to="/addemployee" className="nav-link">Добавить сотрудника<span class="sr-only">(current)</span></Link>
-      </li>
-      <li className="nav-item active">
-        <Link to="/list"  className="nav-link">Просмотреть список</Link>
-      </li>
-      <li className="nav-item">
-        <Link class="nav-link" href="#">Pricing</Link>
-      </li>
-     
-    </ul>
+          <Link to="/" className="navbar-brand">
+            BlueBox
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarCollapse">
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <Link to="/addemployee" className="nav-link">
+                  Добавить сотрудника<span class="sr-only">(current)</span>
+                </Link>
+              </li>
+              <li className="nav-item active">
+                <Link to="/list" className="nav-link">
+                  Просмотреть список
+                </Link>
+              </li>
+              <li className="nav-item active">
+                <Link class="nav-link" href="#">
+                  Состояние сотрудников
+                </Link>
+              </li>
 
-   
-      </div>
-    
-    
-      <button
-          onClick={this.onLogoutclick}
-          className="btn btn-small btn-danger"
-        >
-          Выйти
-        </button>
+              <li className="nav-item active">
+                <Link class="nav-link" href="#">
+                  Выдать пропуск
+                </Link>
+              </li>
+
+
+
+            </ul>
+          </div>
+
+          <button
+            onClick={this.onLogoutclick}
+            className="btn btn-small btn-danger"
+          >
+            Выйти
+          </button>
         </nav>
-
-     
 
         <Switch>
           <Route exact path="/" component={ListEmployee} />
@@ -64,22 +85,9 @@ class Dashboard extends Component {
         </Switch>
 
         <div className="container">
-          <div className="jumbotron">
-            <h1>Navbar example</h1>
-            <p>
-              This example is a quick exercise to illustrate how the default,
-              static and fixed to top navbar work. It includes the responsive
-              CSS and HTML, so it also adapts to your viewport and device.
-            </p>
-            <p>
-              To see the difference between static and fixed top navbars, just
-              scroll.
-            </p>
-          </div>
-        </div>
-        <div style={{ height: "70vh" }} className="container valign-wrapper">
-          <div className="row">
-            <div className="col s12 center-align">
+          <div className="jumbotron m-5 p-9">
+            <Clock />
+            <div>
               <h4>
                 <b>Здравствуйте,</b> {user.name.split(" ")[0]}
                 <p className="flow-text grey-text text-darken-1">
